@@ -1,0 +1,70 @@
+package com.bin.sm;
+
+
+
+import java.io.File;
+import java.io.IOException;
+import java.net.URL;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+
+/**
+ *  appname  ip  dev
+ */
+public class Main {
+    public static void main(String[] args) throws IOException {
+
+        // 获取路径 jar 去jar获取  file
+        URL url = Main.class.getResource("");
+        String protocol = url.getProtocol();
+        if ("file".equals(protocol)) {
+            String realPath = getRealPath();
+            String config = realPath + File.separator + "agent.yml";
+            File file = new File(config);
+
+            System.out.println(file.exists());
+            System.out.println("file-"+getRealPath());
+        }else if ("jar".equals(protocol)) {
+            System.out.println("jar-"+getProjectPath());
+        }
+    }
+
+
+    /**
+     * 获取项目所在路径(包括jar)
+     *
+     * @return
+     */
+    public static String getProjectPath() {
+
+        java.net.URL url = Main.class.getProtectionDomain().getCodeSource()
+                .getLocation();
+        String filePath = null;
+        try {
+            filePath = java.net.URLDecoder.decode(url.getPath(), "utf-8");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        if (filePath.endsWith(".jar"))
+            filePath = filePath.substring(0, filePath.lastIndexOf("/") + 1);
+        java.io.File file = new java.io.File(filePath);
+        filePath = file.getAbsolutePath();
+        return filePath;
+    }
+
+    /**
+     * 获取项目所在路径
+     *
+     * @return
+     */
+    public static String getRealPath() {
+        String realPath = Main.class.getClassLoader().getResource("")
+                .getFile();
+        java.io.File file = new java.io.File(realPath);
+        realPath = file.getAbsolutePath();
+
+        realPath = java.net.URLDecoder.decode(realPath, StandardCharsets.UTF_8);
+
+        return realPath;
+    }
+}

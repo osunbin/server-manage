@@ -1,0 +1,12 @@
+com.bin.sm:sm-core:jar:1.0-SNAPSHOT
++- com.lmax:disruptor:jar:3.4.2:compile
++- org.slf4j:slf4j-api:jar:1.7.36:compile
++- org.apache.logging.log4j:log4j-slf4j-impl:jar:2.20.0:compile
+|  \- org.apache.logging.log4j:log4j-api:jar:2.20.0:compile
++- org.apache.logging.log4j:log4j-core:jar:2.20.0:compile
++- org.apache.maven.shared:maven-invoker:jar:3.3.0:compile
+|  +- org.apache.maven.shared:maven-shared-utils:jar:3.4.2:compile
+|  \- javax.inject:javax.inject:jar:1:compile
+\- org.whitesource:maven-dependency-tree-parser:jar:1.0.6:compile
+   +- commons-lang:commons-lang:jar:2.4:compile
+   \- commons-io:commons-io:jar:2.0.1:compile
